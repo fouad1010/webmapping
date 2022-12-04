@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+	 <title>Tourism International | Requête attributaire</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+
+
+</head>
+
+<body>
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+							  <!-- Load Leaflet from CDN -->
+							  <link
+								rel="stylesheet"
+								href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+								integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+								crossorigin=""
+							  />
+							  <script
+								src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+								integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+								crossorigin=""
+							  ></script>
+						  
+							  <!-- Load Esri Leaflet from CDN -->
+							  <script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js"></script>
+							  <script src="https://unpkg.com/esri-leaflet-vector@3.0.0/dist/esri-leaflet-vector.js"></script>
+						  
+							  <style>
+								#map {
+								  width: 1350px;
+								  height: 655px;
+								  font-family: Arial, Helvetica, sans-serif;
+								  font-size: 14px;
+								  color: #323232;
+								}
+							  </style>
+
+						<html>
+							</head>
+								<body>
+									<div id='map' ></div>
+						
+
+							  <script>
+						
+								const map = L.map('map').setView([29.638933, -9.665423], 5);
+						
+                                const basemap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+                                                        ).addTo(map);
+						  
+						  
+								// Create the select dropdown and add to the top-right of the map
+								L.Control.QueryControl = L.Control.extend({
+								  onAdd: function (map) {
+									// Array of query where clauses
+									const whereClauses = [
+									  "Afficher les régions dont :",
+									  "T_Internat < 20000",
+									  "T_Internat < 60000 and T_Internat > 20000",
+									  "T_Internat < 120000 and T_Internat > 60000",
+									  "T_Internat < 400000 and T_Internat > 120000"
+									  
+									];
+									
+									// Create select
+									const select = L.DomUtil.create("select", "");
+									select.setAttribute("id", "whereClauseSelect");
+									select.setAttribute("style", "font-size: 16px;padding:4px 8px;");
+									whereClauses.forEach(function (whereClause) {
+									  let option = L.DomUtil.create("option");
+									  option.innerHTML = whereClause;
+									  select.appendChild(option);
+									});
+									return select;
+								  },
+						  
+								  onRemove: function (map) {
+									// Nothing to do here
+								  }
+								});
+						  
+								L.control.queryControl = function (opts) {
+								  return new L.Control.QueryControl(opts);
+								};
+						  
+								L.control
+								  .queryControl({
+									position: "topright"
+								  })
+								  .addTo(map);
+						  
+								// Add the Feature Layer to the map
+								const parcels = L.esri
+								  .featureLayer({
+									url: "https://services7.arcgis.com/UgZbAIf0680XxMRp/arcgis/rest/services/regions/FeatureServer/0",
+									simplifyFactor: 0.5,
+									precision: 4,
+									where: "1 = 0",
+									style: function (feature) {
+									  // https://leafletjs.com/reference-1.7.1.html#path-option
+									  return {
+										opacity: 1.0,
+										weight: 0.5,
+										color: "black",
+										fillColor: "#8856a7",
+										fillOpacity: 0.5
+									  };
+									}
+								  })
+								  .addTo(map);
+						  
+								//Setup the Popup
+								parcels.bindPopup(function (layer) {
+								return L.Util.template("<b>Région : {region}</b>" + " </br> Nombre de touristes: {total2020}", layer.feature.properties);
+								});
+						  
+								// When the selected where clause changes, set the filter on the layer
+								const select = document.getElementById("whereClauseSelect");
+								select.addEventListener("change", () => {
+								  if (select.value !== "") {
+									parcels.setWhere(select.value);
+								  }
+								});
+						
+							  </script>
+							  </html>
+
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+	<script src="js/jquery.superslides.min.js"></script>
+	<script src="js/images-loded.min.js"></script>
+	<script src="js/isotope.min.js"></script>
+	<script src="js/baguetteBox.min.js"></script>
+	<script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>

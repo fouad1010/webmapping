@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>VisitMorocco</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center  header-transparent ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <a href="index.html" class="logo">
+          <img src="assets/img/logo.png" alt="">
+      </a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
+          <li><a class="nav-link scrollto" href="#about">À propos</a></li>
+          <li class="dropdown"><a href="index.html"><span>tourisme</span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                  <li><a href="Sites.html">Sites touristiques</a></li>
+                  <li><a href="Hebergement.html">Hébergement</a></li>
+                  <li><a href="Deplacement.html">Déplacement</a></li>
+                  <li><a href="Topographie.html">Topographie</a></li>
+                </ul>
+          </li>
+          <li class="dropdown"><a href="index.html"><span>Statistiques</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="National.html">Tourisme national</a></li>
+                <li class="dropdown"><a href="index.html"><span>tourisme International</span> <i class="bi bi-chevron-down"></i></a>
+                  <ul>
+                    <li><a href="symboles.html"> Carte à symboles proportionnels</a></li>
+                    <li><a href="attributaire.html">Requête attributaire</a></li>
+                  </ul>
+              </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="#team">Équipe</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+
+          <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-end align-items-center">
+    <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Bienvenue sur <span>VisitMorocco</span></h2>
+          <p class="animate__animated fanimate__adeInUp">Le Maroc est connu par sa richesse en sites et villes touristiques dans tout le territoire national. Ainsi, ce géoportail a pour objectif de mettre en valeur géographiquement cette infrastructure et de décrire l'emplacement ainsi que les informations de ces sites, tout en intégrant les hôtels d'hébergement proches de ces places afin de faciliter aux visiteurs la programmation de leurs voyages.</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">en savoir plus</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Terre de lumière</h2>
+          <p class="animate__animated animate__fadeInUp">Des couleurs puissantes, une lumière qui jaillit de l’horizon, une énergie à nulle autre pareille. 
+            Ouvrez les yeux, vous êtes au Maroc.</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown">Découvrir le Maroc</h2>
+          <p class="animate__animated animate__fadeInUp">Des ruelles diaphanes de Marrakech, à la radieuse médina de Fès, en passant par les mystères de Tanger et les vallées verdoyantes de l’Atlas. Partout au Maroc la lumière est une source d’inspiration, de création et d’énergie.</p>
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- =======  Section À propos ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>À propos</h2>
+          <p>Géoportail</p>
+        </div>
+
+        <div class="row content" data-aos="fade-up">
+          <p class="fst-italic">
+            <p>
+              Géoportail de l'infrastructure du secteur de tourisme au Maroc exposant les sites touristiques les plus visités, les hôtels classés et les données statistiques publiées par le Haut Commissariat au Plan l'an dernier et ceci en adoptant une approche cartographique basée Web.
+            </p>
+            <p>
+              Ainsi, la démarche adoptée pour la réalisation de ce géoportail est la suivante :
+            </p>
+
+            <ul>
+              <li><i class="ri-check-double-line"></i> Récupération des données statistiques au près du site du Haut Commissariat au Plan ;</li>
+              <li><i class="ri-check-double-line"></i> Nettoyage, préparation et transformation des données récupérées selon le besoin ;</li>
+              <li><i class="ri-check-double-line"></i> Elaboration des cartes en respectant les normes de la rédaction cartographique. </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+
+        <ul class="nav nav-tabs row d-flex">
+          <li class="nav-item col-3" data-aos="zoom-in">
+            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
+              <i class="ri-gps-line"></i>
+              <h4 class="d-none d-lg-block">Sites Touristiques</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3" data-aos="zoom-in" data-aos-delay="100">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
+              <i class="ri-body-scan-line"></i>
+              <h4 class="d-none d-lg-block">Hébergement</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3" data-aos="zoom-in" data-aos-delay="200">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
+              <i class="ri-sun-line"></i>
+              <h4 class="d-none d-lg-block">Se déplacer</h4>
+            </a>
+          </li>
+          <li class="nav-item col-3" data-aos="zoom-in" data-aos-delay="300">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-4">
+              <i class="ri-store-line"></i>
+              <h4 class="d-none d-lg-block">Statistiques</h4>
+            </a>
+          </li>
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up">
+          <div class="tab-pane active show" id="tab-1">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>les données et les outils utilisés:</h3>
+                </p>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Google Maps pour récuperer les coordonées et les adresses;</li>
+                  <li><i class="ri-check-double-line"></i> wikipedia; </li>
+                  <li><i class="ri-check-double-line"></i> Arcgis pour la création du shapefile.</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="assets/img/features-1.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>les données et les outils utilisés:</h3>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Une liste des hôtels 4 étoiles, 5 étoiles et luxe implantés au niveau du Maroc ; </li>
+                  <li><i class="ri-check-double-line"></i> Google Maps pour récupérer les coordonées ;</li>
+                  <li><i class="ri-check-double-line"></i> Arcgis pour la création du shapefile.</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="assets/img/features-2.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>les données et les outils utilisés :</h3>
+
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Shapefile des lignes du Tramway du Rabat et Casablanca téléchargé du site d'ArcGIS .</li>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="assets/img/features-3.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>les données et les outils utilisés :</h3>
+                <ul>
+                  <li><i class="ri-check-double-line"></i> Annuaire du tourisme téléchargé du site du Haut Commissariat au Plan.</li>
+                  
+                </ul>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="assets/img/features-4.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+
+
+    <!-- ======= Section d'équipe ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Développeurs</h2>
+          <p>Travail réalisé par</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up">
+              <div class="member-img">
+                <img src="assets/img/team/team-1.jpeg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>HAMDAN Khadija</h4>
+                <span>Étudiante en 3ème année du cycle ingénieur en Sciences Géomatiques et Ingénierie Topographique</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="assets/img/team/team-2.jpeg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>OUJAMAA Fouad</h4>
+                <span>Étudiant en 3ème année du cycle ingénieur en Sciences Géomatiques et Ingénierie Topographique</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title" data-aos="zoom-out">
+          <h2>Contact</h2>
+          <p>Contactez-nous</p>
+        </div>
+
+        <div class="row mt-5">
+
+          <div class="col-lg-4" data-aos="fade-right">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Adresse:</h4>
+                <p>Institut Agronomique et Vétérinaire HASSAN II</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>hamdankhadija@iav.ac.ma</p>
+                <p>oujamaafouad@iav.ac.ma</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Téléphone:</h4>
+                <p></p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left">
+
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="nom" placeholder="Votre Nom" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="Objet" id="subject" placeholder="Objet" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">chargement</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Votre message a été envoyé. Merci !</div>
+              </div>
+              <div class="text-center"><button type="submit">envoyer le message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+   
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>VisitMorocco</h3>
+      <p>Les essentiels du Géoportail partout avec vous. Vous y retrouvez les cartes et données représentatives du tourisme au Maroc.</p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>VisitMorocco</span></strong>.Tous les droits sont réservés
+      </div>
+      <div class="crédits">
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

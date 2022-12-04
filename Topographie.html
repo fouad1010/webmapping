@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Topographie | Modèle 3D</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.18/"></script>
+
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+    <script>
+        require(["esri/Map", "esri/views/SceneView", "esri/layers/FeatureLayer", "esri/widgets/Legend"], function(
+            Map,
+            SceneView,
+            FeatureLayer,
+        ) {
+            /*****************************************************************
+             * Create a function that generates symbols for extruded polygons.
+             *****************************************************************/
+            // single symbol
+            var building3dSymbol = {
+                type: "polygon-3d",
+                symbolLayers: [{
+                    type: "extrude",
+                    material: {
+                        color: "#FFFF00"
+                    },
+                    edges: {
+                        type: "solid",
+                        color: "#FF0000",
+                        size: 1.5
+                    }
+                }]
+            };
+
+            // Simple symbolization renderer (single symbolized)
+            var simpleRenderer = {
+                type: "simple",
+                symbol: building3dSymbol,
+                visualVariables: [{
+                    type: "size",
+                    field: "length",
+                    valueUnit: "meters"
+                }]
+            };
+
+            function getSymbol(color) {
+                return {
+                    type: "polygon-3d", 			// autocasts as new PolygonSymbol3D()
+                    symbolLayers: [{
+                        type: "extrude", 			// autocasts as new ExtrudeSymbol3DLayer()
+                        material: {
+                            color: color
+                        },
+                        edges: {
+                            type: "solid",
+                            color: "#999",
+                            size: 0.5
+                        }
+                    }]
+                };
+            }
+
+            const uniqueValueRenderer = {
+                type: "unique-value", 					// autocasts as new UniqueValueRenderer()
+                defaultSymbol: getSymbol("#731758"),
+                defaultLabel: "Other land buildings",
+                field: "type",
+                uniqueValueInfos: [{
+                    value: "office",
+                    symbol: getSymbol("#A7C636"),
+                    label: "Office building buildings"
+                }, {
+                    value: "block",
+                    symbol: getSymbol("#FC921F"),
+                    label: "Cultural land building"
+                }, {
+                    value: "commercial",
+                    symbol: getSymbol("#ED5151"),
+                    label: "Commercial land building"
+                }, {
+                    value: "tower",
+                    symbol: getSymbol("#149ECE"),
+                    label: "Tourism land building"
+                }, {
+                    value: "hall",
+                    symbol: getSymbol("#689E1A"),
+                    label: "Government land building"
+                }, {
+                    value: "stadium",
+                    symbol: getSymbol("#26911A"),
+                    label: "Public service land building"
+                }, {
+                    value: "train_station",
+                    symbol: getSymbol("#B5261A"),
+                    label: "Public facilities land building"
+                }],
+                visualVariables: [{
+                    type: "size",
+                    field: "length",
+                    valueUnit: "meters" 				// Converts and extrudes all data values in meters
+                }]
+            };
+
+            // Set the renderer on the layer
+            const buildingsLayer = new FeatureLayer({
+                url: "http://localhost:6080/arcgis/rest/services/China_Buildings_Latest/MapServer/0",
+                // renderer: simpleRenderer,
+                renderer: uniqueValueRenderer,
+                elevationInfo: {
+                    mode: "on-the-ground"
+                },
+                popupTemplate: {
+                    title: "{name}",
+                    content: [{
+                        type: "fields",
+                        fieldInfos: [{
+                            fieldName: "objectid",
+                            label: "Building Number"
+                        }, {
+                            fieldName: "code",
+                            label: "Building Coding"
+                        }, {
+                            fieldName: "name",
+                            label: "Building Name"
+                        }, {
+                            fieldName: "type",
+                            label: "Building Type"
+                        }, {
+                            fieldName: "length",
+                            label: "Building height"
+                        }]
+                    }]
+                },
+                outFields: ["objectid", "code", "name", "type", "length"]
+            });
+
+            const map = new Map({
+                basemap: "satellite",
+                ground: "world-elevation",
+                layers: [buildingsLayer]
+            });
+            
+            const view = new SceneView({
+                container: "viewDiv",
+                map: map,
+                camera: {
+                    position: {
+                        longitude: -9.400,
+                        latitude: 28.337,
+                        z: 5,
+                        spatialReference: {
+                            wkid: 4261
+                        }
+                    },
+                    heading: 300,
+                    tilt: 55
+                }
+            });
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
+</html>

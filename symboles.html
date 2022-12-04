@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tourisme international</title>
+  <meta charset="utf-8">
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <!--<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico">--> 
+
+  <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+    crossorigin=""/>
+
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+    crossorigin="">
+</script>
+
+
+  <style>
+    #map {
+      width: 1350;
+      height: 655;
+    }
+  </style>
+
+  <style>
+    #map {
+      width: 100;
+      height: 100vh;
+    }
+    .info {
+      padding: 6px 8px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      background: white;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
+    .info h4 {
+      margin: 0 0 5px;
+      color: #777;
+    }
+    .legend {
+      text-align: left;
+      line-height: 18px;
+      color: #555;
+    }
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map" ></div>
+  
+
+  <script type="text/javascript" src="Regions.js"></script>
+  <script type="text/javascript" src="Symboles.js"></script>
+
+  <script type="text/javascript">
+    var map = L.map("map").setView([28.337, -9.400], 5);
+
+    var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(map);
+    
+
+    // control that shows state info on hover
+    var info = L.control();
+
+    info.onAdd = function(map) {
+      this._div = L.DomUtil.create("div", "info");
+      this.update();
+      return this._div;
+    };
+
+    info.update = function(props) {
+      this._div.innerHTML =
+        "<h4>Tourisme international: Nombre des arrivés dans les établissements classés  (2021) </h4>" + (props ? 
+        "<b>" + props.Nom_Region + "</b><br />" +" Taux du tourisme :" + props.num_tour + "%"
+          : "Survoler une région");
+    };
+
+    info.addTo(map);
+
+    var regionGeoJs=L.geoJson(vaxData, {
+            style :{
+            weight: 1,
+            opacity: 1,
+            color: '#2b8cbe',
+            fillOpacity: 0.1
+            }
+        }).addTo(map);
+
+    map.attributionControl.addAttribution('Source de données : Haut Commissariat au Plan; <a href="https://www.hcp.ma/downloads/Annuaire-Statistique-du-Maroc-format-Excel_t22392.html">Annuaire Statistique du Maroc</a>');
+    centro.features.sort(function (a, b) {
+			return b.properties.num_tour - a.properties.num_tour;
+		});
+
+
+
+	const opo= L.geoJson(centro, {
+		
+		pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, {
+				color: 'darkblue',
+				weight: 1,
+				fillColor: 'dark',
+				fillOpacity: 0.3,
+				radius: getRadius(feature.properties.num_tour)
+			});
+		},
+		onEachFeature: function (feature, layer) {
+			var popup =
+				'<p><b>' + layer.feature.properties.Nom_Region + '</b></p>' +
+				'<p>Nombre des arrivées: ' + layer.feature.properties.num_tour + '</p>' 
+            
+			layer.on('mouseover', function () {
+			    layer.bindPopup(popup).openPopup();
+				layer.setStyle({
+					fillColor: '#2b8cbe',
+					fillOpacity: 1
+				});
+			});
+			layer.on('mouseout', function () {
+				layer.setStyle({
+					fillColor: '#2b8cbe',
+					fillOpacity: 0.3
+				});
+				layer.bindPopup(popup).closePopup();
+			})
+
+		}
+	});
+	function getRadius(area) {
+		var radius = Math.sqrt(area / Math.PI);
+			return radius * 0.1;
+	}
+    opo.addTo(map);
+    
+</script>
+</body>
+</html>

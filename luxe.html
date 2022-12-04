@@ -1,0 +1,157 @@
+<html>
+<head>
+<title> Hébergement </title>
+<meta charset="UTF-8">
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+    crossorigin=""/>
+
+  <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+    crossorigin=""> 
+  </script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+<style>
+  #map {
+    width: 100vh;
+    height: 100vh;
+  }
+</style>
+
+<style>
+  #map {
+    width: 1350px;
+    height: 655px;
+  }
+  .info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  .info h4 {
+    margin: 0 0 5px;
+    color: #777;
+  }
+  .legend {
+    text-align: left;
+    line-height: 18px;
+    color: #555;
+  }
+  .legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+  }
+</style>
+
+</head>
+
+<body>
+
+  <div id="map"></div>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+  
+  </script>
+  <script type="text/javascript" src="Regions.js"></script>
+  <script type="text/javascript" src="luxe.js"></script>
+  
+<script>
+
+  // Initialiser la carte
+    
+var map = L.map('map', {
+                 center: [28.337, -9.400],
+                 zoom: 5 });
+  
+
+  // Ajout fonds de carte (tile et WMS)
+
+var baselayers = {
+     
+	// Services de tuiles
+     ESRI: L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'),
+     CartoDB: L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png')};baselayers.CartoDB.addTo(map);
+
+  // Selecteur fonds de carte
+  var info = L.control();
+
+info.onAdd = function(map) {
+  this._div = L.DomUtil.create("div", "info");
+  this.update();
+  return this._div;
+};
+
+info.update = function(props) {
+    this._div.innerHTML = "<h4>Quelques hôtels de luxe implantés au niveau national </h4>" + (props ?  
+        "<b>" + props.Ville + "</b><br />" + " Nom : "+ props.Sites
+          : "Veuillez mettre le curseur sur un hôtel");
+    };
+info.addTo(map);
+
+L.control.layers(baselayers).addTo(map);
+
+  
+  // Echelle cartographique
+  
+L.control.scale().addTo(map);
+var regionGeoJs=L.geoJson(vaxData, {
+  style :{
+    weight: 1,
+    opacity: 1,
+    color: '#bdbdbd',
+    fillOpacity: 0.1
+  }
+}).addTo(map);
+var regionCentroProd=L.geoJson(luxe, {
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng,{
+      radius : 5, 
+      color : '#de2d26',
+      fillOpacity: 1,
+      fillColor: '#fc9272'
+    });
+  },
+  onEachFeature: function (feature, layer) {
+      var popup =
+          '<p><b>' + layer.feature.properties.Hotel + '</b></p>' +
+          '<p>Ville : ' + layer.feature.properties.Ville + ' </p>' +
+          '<p>Adresse : ' + layer.feature.properties.Adresse + ' </p>' +
+          '<p>Téléphone : ' + layer.feature.properties.Telephone + ' </p>'+
+          '<p>Site Web : ' + layer.feature.properties.Site + ' </p>'
+
+          
+      layer.on('mouseover', function () {
+          layer.bindPopup(popup).openPopup();
+          layer.setStyle({
+              fillColor: '#fc9272',
+              fillOpacity: 1
+          });
+      });
+      layer.on('mouseout', function () {
+          layer.setStyle({
+              fillColor: '#fc9272',
+              fillOpacity: 0.3
+          });
+          layer.bindPopup(popup).closePopup();
+      })
+  }
+}).addTo(map);
+  
+</script>
+  
+</body>
+</html>
